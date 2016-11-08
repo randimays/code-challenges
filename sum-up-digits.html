@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sum Up Those Digits</title>
+</head>
+<body>
+
+	<h2>Please enter an integer:</h2>
+	<input type="text" name="integer" id="integer-input"/>
+	<button type="button" id="integer-button">Submit</button>
+	<p id="result">The sum of your integer is: <span id="sum"></span></p>
+
+<script>
+	"use strict";
+	var button = document.getElementById('integer-button');
+	var result = document.getElementById('result');
+	var sum = document.getElementById('sum');
+
+	function addNumbers(integer) {
+		var sum = 0;
+		if (typeof Number(integer) == "number") {
+			for (var i = 0; i < integer.length; i++) {
+				sum += Number(integer[i]);
+				console.log(sum);
+			}
+			return sum;
+		}
+		return false;
+	}
+
+	button.addEventListener("click", function(event){
+		var integer = document.getElementById('integer-input').value;
+		addNumbers(integer) ? sum.innerHTML = addNumbers(integer) : result.innerHTML = "Not a valid integer.";
+	}, false);
+
+</script>
+</body>
+</html>
