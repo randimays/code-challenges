@@ -62,22 +62,22 @@
             ];
 
             const family = [
-                   {
-                       name: "Pam",
-                       gender: "female",
-                       age: 29,
-                   },
+                {
+                    name: "Pam",
+                    gender: "female",
+                    age: 29,
+                },
+                {
+                    name: "Amelie",
+                    gender: "female",
+                    age: 10,
+                },
                     {
-                       name: "Amelie",
-                       gender: "female",
-                       age: 10,
-                   },
-                       {
-                       name: "Justin",
-                       gender: "male",
-                       age: 32,
-                   },
-               ];
+                    name: "Justin",
+                    gender: "male",
+                    age: 32,
+                },
+            ];
 
             // PROBLEM 1 - create an array of the first letters of each fruit
 
@@ -156,11 +156,13 @@
             // your output for the given input should be [3, 6] for 'Bud' and 'Bowser'
 
             function pugNameLengths(pets) {
-                return pets.filter((pet) => {
-                    return pet.breed === 'Pug';
-                }).map((pug) => {
-                    return pug.name.length;
-                });
+                return pets
+                    .filter((pet) => {
+                        return pet.breed === 'Pug';
+                    })
+                    .map((pug) => {
+                        return pug.name.length;
+                    });
             }
 
             console.log(pugNameLengths(pets));
@@ -168,8 +170,28 @@
             // PROBLEM 7 - create a function getFemaleFamilyMembers() that when given the family variable as an argument,
             // returns an array of female family member names
 
+            function getFemaleFamilyMembers(family) {
+                return family
+                    .filter(member => {
+                        return member.gender === 'female';
+                    })
+                    .map((member) => {
+                        return member.name;
+                    });
+            }
+
+            console.log(getFemaleFamilyMembers(family));
+
             // PROBLEM 8 - create a function makeLongPetString() that when given the variable of pets,
             // returns a string of all property values with dashes separating each property value
+
+            function makeLongPetString(pets) {
+                return pets.map((pet, index) => {
+                    return pet.name + ' - ' + pet.age + ' - ' + pet.breed;
+                });
+            }
+
+            console.log(makeLongPetString(pets));
 
             // PROBLEM 9 - create a function that when given an array of first names, returns an array of the same names with a last name of Smith
 
