@@ -12,211 +12,309 @@
     </main>
     <script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script>
-        {
-            "use strict";
+        "use strict";
 
-            const fruits = ["cantaloupe", "orange", "date", "elderberry", "ugli fruit", "pineapple"];
+        const fruits = ["cantaloupe", "orange", "date", "elderberry", "ugli fruit", "pineapple"];
 
-            const customers = [
-                {
-                    name: "Fred",
-                    age: 58,
-                    occupation: "Police Officer",
-                    noOfPurchases: 4
-                },
-                {
-                    name: "Samantha",
-                    age: 54,
-                    occupation: "Teacher",
-                    noOfPurchases: 18
-                },
-                {
-                    name: "Charles",
-                    age: 38,
-                    occupation: "Librarian",
-                    noOfPurchases: 9
-                }
-            ];
-
-            const pets = [
-                {
-                    name: 'Bud',
-                    age: 2,
-                    breed: 'Pug'
-                },
-                {
-                    name: 'Gabby',
-                    age: 10,
-                    breed: 'Retriever'
-                },
-                {
-                    name: 'Fred',
-                    age: 1,
-                    breed: 'Lab'
-                },
-                {
-                    name: 'Bowser',
-                    age: 2,
-                    breed: 'Pug'
-                }
-            ];
-
-            const family = [
-                {
-                    name: "Pam",
-                    gender: "female",
-                    age: 29,
-                },
-                {
-                    name: "Amelie",
-                    gender: "female",
-                    age: 10,
-                },
-                    {
-                    name: "Justin",
-                    gender: "male",
-                    age: 32,
-                },
-            ];
-
-            // PROBLEM 1 - create an array of the first letters of each fruit
-
-            function fruitFirstLetters(fruits) {
-                return fruits.map((fruit) => {
-                    return fruit.charAt(0);
-                });
+        const customers = [
+            {
+                name: "Fred",
+                age: 58,
+                occupation: "Police Officer",
+                noOfPurchases: 4
+            },
+            {
+                name: "Samantha",
+                age: 54,
+                occupation: "Teacher",
+                noOfPurchases: 18
+            },
+            {
+                name: "Charles",
+                age: 38,
+                occupation: "Librarian",
+                noOfPurchases: 9
             }
+        ];
 
-            console.log(fruitFirstLetters(fruits));
-
-            // PROBLEM 2 - create array of user objects based on the customers array
-            // of objects (each user object should just have name and age properties)
-
-            function createUsersFromCustomers(customers) {
-                return customers.map((customer) => {
-                    return {
-                        name: customer.name,
-                        age: customer.age
-                    };
-                });
+        const pets = [
+            {
+                name: 'Bud',
+                age: 2,
+                breed: 'Pug'
+            },
+            {
+                name: 'Gabby',
+                age: 10,
+                breed: 'Retriever'
+            },
+            {
+                name: 'Fred',
+                age: 1,
+                breed: 'Lab'
+            },
+            {
+                name: 'Bowser',
+                age: 2,
+                breed: 'Pug'
             }
+        ];
 
-            console.log(createUsersFromCustomers(customers));
-
-            // PROBLEM 3 - create an array of civil servant customers (teachers and police officers)
-            // containing the same properties as the objects on the customers objects
-
-            function getCivilServants(customers) {
-                return customers.filter((customer) => {
-                    return customer.occupation === 'Teacher' || customer.occupation === 'Police Officer';
-                });
-            }
-
-            console.log(getCivilServants(customers));
-
-            // PROBLEM 4 - determine the average age of customers
-
-            function getAverageAge(customers) {
-                return (customers.reduce((total, customer) => {
-                    return total + customer.age;
-                }, 0))/customers.length;
-            }
-
-            console.log(getAverageAge(customers));
-
-            // PROBLEM 5 - create a function makeSuperPet() that takes in the pets array as input and returns a single pet object
-            // with the following shape...
-            /*
-
+        const family = [
+            {
+                name: "Pam",
+                gender: "female",
+                age: 29,
+            },
+            {
+                name: "Amelie",
+                gender: "female",
+                age: 10,
+            },
                 {
-                    name: ALL_PET_NAMES_CONCATENATED_INTO_A_SINGLE_STRING,
-                    age: THE_TOTAL_OF_ALL_PET_AGES,
-                    breed: THE_FIRST_LETTERS_OF_ALL_PET_BREEDS_CONCATENATATED_INTO_A_SINGLE_STRING
-                }
+                name: "Justin",
+                gender: "male",
+                age: 32,
+            },
+        ];
 
-             */
+        // PROBLEM 1 - create an array of the first letters of each fruit
 
-            function makeSuperPet(pets) {
-                return {
-                    name: pets.reduce((newName, pet) => {
-                        return newName + pet.name;
-                    }, ''),
-                    age: pets.reduce((newAge, pet) => {
-                        return newAge + pet.age
-                    }, 0),
-                    breed: pets.reduce((newBreed, pet) => {
-                        return newBreed + pet.breed.charAt(0)
-                    }, '')
-                };
-            }
-
-            console.log(makeSuperPet(pets));
-
-            // PROBLEM 6 - take in an array of pets and return an array of the length of first names for pugs only
-            // your output for the given input should be [3, 6] for 'Bud' and 'Bowser'
-
-            function pugNameLengths(pets) {
-                return pets
-                    .filter((pet) => {
-                        return pet.breed === 'Pug';
-                    })
-                    .map((pug) => {
-                        return pug.name.length;
-                    });
-            }
-
-            console.log(pugNameLengths(pets));
-
-            // PROBLEM 7 - create a function getFemaleFamilyMembers() that when given the family variable as an argument,
-            // returns an array of female family member names
-
-            function getFemaleFamilyMembers(family) {
-                return family
-                    .filter(member => {
-                        return member.gender === 'female';
-                    })
-                    .map((member) => {
-                        return member.name;
-                    });
-            }
-
-            console.log(getFemaleFamilyMembers(family));
-
-            // PROBLEM 8 - create a function makeLongPetString() that when given the variable of pets,
-            // returns a string of all property values with dashes separating each property value
-
-            function makeLongPetString(pets) {
-                return pets.map((pet, index) => {
-                    return pet.name + ' - ' + pet.age + ' - ' + pet.breed;
-                });
-            }
-
-            console.log(makeLongPetString(pets));
-
-            // PROBLEM 9 - create a function that when given an array of first names, returns an array of the same names with a last name of Smith
-
-                // input = ['Sally', 'Fred', 'Steve']
-                // output = ['Sally Smith', 'Fred Smith', 'Steve']
-
-
-            // PROBLEM 10 - create a function that when given an array of numbers, return the sum of even numbers
-
-            // PROBLEM 11 - create a function that when given an array of numbers, return the sum of all numbers evenly divisible by 10
-
-            // PROBLEM 12 - create a function that when given an array of names, return a string of all the first letters of each name
-
-            // PROBLEM 13 - create a function that when given an array of values, returns an array of only the truthy values
-
-            // PROBLEM 14 - create a function that when given an object, returns the property values as an array of elements
-
-            // PROBLEM 15 - create a function that when given an object, returns the property values as an array of elements
-
-            // PROBLEM 16 - create a function that when given three arguments: a min num, a max num, an array
-            // of nums will return the array of nums that are only between the min and max values, inclusive
-
-            // PROBLEM 17 - create a function that when given an array of strings, returns an array of objects
-            // with properties for the given string value and the length of the string and the string without vowels (not including y)
+        function fruitFirstLetters(fruits) {
+            return fruits.map((fruit) => {
+                return fruit.charAt(0);
+            });
         }
+
+        // console.log(fruitFirstLetters(fruits));
+
+        // PROBLEM 2 - create array of user objects based on the customers array
+        // of objects (each user object should just have name and age properties)
+
+        function createUsersFromCustomers(customers) {
+            return customers.map((customer) => {
+                return {
+                    name: customer.name,
+                    age: customer.age
+                };
+            });
+        }
+
+        // console.log(createUsersFromCustomers(customers));
+
+        // PROBLEM 3 - create an array of civil servant customers (teachers and police officers)
+        // containing the same properties as the objects on the customers objects
+
+        function getCivilServants(customers) {
+            return customers.filter((customer) => {
+                return customer.occupation === 'Teacher' || customer.occupation === 'Police Officer';
+            });
+        }
+
+        // console.log(getCivilServants(customers));
+
+        // PROBLEM 4 - determine the average age of customers
+
+        function getAverageAge(customers) {
+            return (customers.reduce((total, customer) => {
+                return total + customer.age;
+            }, 0))/customers.length;
+        }
+
+        // console.log(getAverageAge(customers));
+
+        // PROBLEM 5 - create a function makeSuperPet() that takes in the pets array as input and returns a single pet object
+        // with the following shape...
+        /*
+
+            {
+                name: ALL_PET_NAMES_CONCATENATED_INTO_A_SINGLE_STRING,
+                age: THE_TOTAL_OF_ALL_PET_AGES,
+                breed: THE_FIRST_LETTERS_OF_ALL_PET_BREEDS_CONCATENATATED_INTO_A_SINGLE_STRING
+            }
+
+            */
+
+        function makeSuperPet(pets) {
+            return {
+                name: pets.reduce((newName, pet) => {
+                    return newName + pet.name;
+                }, ''),
+                age: pets.reduce((newAge, pet) => {
+                    return newAge + pet.age
+                }, 0),
+                breed: pets.reduce((newBreed, pet) => {
+                    return newBreed + pet.breed.charAt(0)
+                }, '')
+            };
+        }
+
+        // console.log(makeSuperPet(pets));
+
+        // PROBLEM 6 - take in an array of pets and return an array of the length of first names for pugs only
+        // your output for the given input should be [3, 6] for 'Bud' and 'Bowser'
+
+        function pugNameLengths(pets) {
+            return pets
+                .filter((pet) => {
+                    return pet.breed === 'Pug';
+                })
+                .map((pug) => {
+                    return pug.name.length;
+                });
+        }
+
+        // console.log(pugNameLengths(pets));
+
+        // PROBLEM 7 - create a function getFemaleFamilyMembers() that when given the family variable as an argument,
+        // returns an array of female family member names
+
+        function getFemaleFamilyMembers(family) {
+            return family
+                .filter(member => {
+                    return member.gender === 'female';
+                })
+                .map((member) => {
+                    return member.name;
+                });
+        }
+
+        // console.log(getFemaleFamilyMembers(family));
+
+        // PROBLEM 8 - create a function makeLongPetString() that when given the variable of pets,
+        // returns a string of all property values with dashes separating each property value
+
+        function makeLongPetString(pets) {
+            return pets
+                .map((pet) => {
+                    return pet.name + ' - ' + pet.age + ' - ' + pet.breed;
+                })
+                .reduce((string, petString, index) => {
+                    if (index !== pets.length - 1) {
+                        return string += (petString + ' - ');
+                    }
+                    return string += petString;
+                }, '');
+        }
+
+        // console.log(makeLongPetString(pets));
+
+        // PROBLEM 9 - create a function that when given an array of first names, returns an array of the same names with a last name of Smith
+
+            // input = ['Sally', 'Fred', 'Steve']
+            // output = ['Sally Smith', 'Fred Smith', 'Steve Smith']
+
+        function makeAllTheSmiths(firstNames) {
+            return firstNames.map((firstName) => {
+                return firstName + ' Smith';
+            });
+        }
+
+        // console.log(makeAllTheSmiths(['Randi', 'Allyson', 'Jordan']));
+
+        // PROBLEM 10 - create a function that when given an array of numbers, return the sum of even numbers
+
+        function getSumOfEvenNumbers(numbers) {
+            return numbers.reduce((total, number) => {
+                if (number % 2 === 0) {
+                    return total += number;
+                }
+                return total;
+            }, 0);
+        }
+
+        // console.log(getSumOfEvenNumbers([12, 17, 28, 85, 93, 2, 104, 333]));
+
+        // PROBLEM 11 - create a function that when given an array of numbers, return the sum of all numbers evenly divisible by 10
+
+        function sumOfNumsDivisibleBy10(numbers) {
+            return numbers.reduce((total, number) => {
+                if ((number/10) % 1 === 0) {
+                    return total += number;
+                }
+                return total;
+            }, 0);
+        }
+
+        // console.log(sumOfNumsDivisibleBy10([100, 405, 4803, 4800, 1000000, 48730, 29830]));
+
+        // PROBLEM 12 - create a function that when given an array of names, return a string of all the first letters of each name
+
+        function getStringFromFirstLettersOfNames(names) {
+            return names.reduce((string, name) => {
+                return string += name.charAt(0);
+            }, '');
+        } 
+
+        // console.log(getStringFromFirstLettersOfNames(['Katniss', 'Peeta', 'Haymitch', 'Effie', 'Cinna', 'Finnick']));
+
+        // PROBLEM 13 - create a function that when given an array of values, returns an array of only the truthy values
+
+        function getTruthyValues(array) {
+            return array.filter((item) => {
+                return item != false;
+            });
+        }
+
+        // console.log(getTruthyValues(['', [], {foo: 'bar'}, 0, 15, 'La la land', ['forecast', 'is',  'sunny'], true]))
+
+        // PROBLEM 14 - create a function that when given an object, returns the property values as an array of elements
+
+        function getArrayFromObject(object) {
+            let randiProperties = [];
+
+            for (property in object) {
+                randiProperties.push(object[property]);
+            }
+
+            return randiProperties;
+        }
+
+        // console.log(getArrayFromObject({
+        //     name: 'Randi',
+        //     occupation: 'Software Developer', 
+        //     employer: 'USAA'
+        // }));
+
+        // PROBLEM 15 - create a function that when given three arguments: a min num, a max num, an array
+        // of nums will return the array of nums that are only between the min and max values, inclusive
+
+        function getArraySlice(min, max, numberArray) {
+            return numberArray.filter((number) => {
+                return number >= min && number <= max; 
+            });
+        }
+
+        // console.log(getArraySlice(1, 5, [1, 2, 3, 4, 5, 6, 7, 8, 9]));
+
+        // PROBLEM 16 - create a function that when given an array of strings, returns an array of objects
+        // with properties for the given string value and the length of the string and the string without vowels (not including y)
+
+        function countConsonants(string) {
+            const vowels = ['a', 'e', 'i', 'o', 'u'];
+            let count = string.length;
+
+            string.toLowerCase().split('').forEach((character) => {
+                vowels.forEach((vowel) => {
+                    if (vowel === character) {
+                        count--;
+                    }
+                });
+            });
+            return count;
+        }
+
+        function getStringProperties(strings) {
+            return strings.map((string) => {
+                return {
+                    string, 
+                    stringLength: string.length,
+                    stringWithoutVowelsLength: countConsonants(string)
+                }
+            });
+        }
+        
+        console.log(getStringProperties(['Amy', 'Grey', 'Cow', 'Jasmine']));
     </script>
 </body>
 </html>
